@@ -91,7 +91,7 @@ int SkipList<T>::randomLevel()
 	do {
 		level++;
 		pushup = getRandomNumber();
-	} while (level < SkipList<T>::maxHeight && pushup >= 0.5);
+	} while (level < SkipList<T>::maxHeight && pushup < 0.5);
 	
 	return level;
 }
