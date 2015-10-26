@@ -10,6 +10,7 @@
 template <class T>
 SkipList<T>::SkipList()
 {
+	std::cout << "DEBUG: Allocate new skip list\n";
 	int height = SkipList<T>::maxHeight;
 	this->head = new Node<T>(height);
 	// FIXME the following line won't compile
@@ -24,6 +25,7 @@ SkipList<T>::~SkipList()
 	while (node != NULL) {
 		Node<T> *last = node;
 		node = node->next[0];
+		std::cout << "DEBUG: Deallocating node " << last->data << std::endl;
 		delete last;
 	}
 }
@@ -38,6 +40,7 @@ bool SkipList<T>::find(const T & x) const
 
 	while (node->next[h] != NULL && h >= 0) {
 		if (node->next[h]->data == x) {
+			std::cout << "DEBUG: " << x << " found\n";
 			return true;
 		} else if (node->next[h]->data > x) {
 			h--;
@@ -61,8 +64,10 @@ void SkipList<T>::insert(const T & x)
 	while (--level >= 0) {
 		while (node->next[level] != NULL && node->next[level]->data < x)
 			node = node->next[level];
-		if (node->next[level] != NULL && node->next[level]->data == x)
+		if (node->next[level] != NULL && node->next[level]->data == x) {
+			std::cout << "DEBUG: Insert failed - node already exists\n";
 			return;
+		}
 		newnode->next[level] = node->next[level];
 		node->next[level] = newnode;
 	}
