@@ -46,12 +46,28 @@ bool SkipList<T>::find(const T & x) const
 		}
 	}
 
+	std::cout << "DEBUG: " << x << " not found\n";
 	return false;
 }
 #endif
 
 #if INSERT || ALL
-// TODO: insert() method
+template <class T>
+void SkipList<T>::insert(const T & x)
+{
+	int level = randomLevel();
+	Node<T> *newnode = new Node<T>(x, level), *node = head;
+
+	while (--level >= 0) {
+		while (node->next[level] != NULL && node->next[level]->data < x)
+			node = node->next[level];
+		if (node->next[level] != NULL && node->next[level]->data == x)
+			return;
+		newnode->next[level] = node->next[level];
+		node->next[level] = newnode;
+	}
+	std::cout << "DEBUG: Inserted value " << x << " at level " << newnode->height << std::endl;
+}
 #endif
 
 #if REMOVE || ALL
