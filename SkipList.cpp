@@ -17,8 +17,16 @@ SkipList<T>::SkipList()
 	this->head->height = 1;
 }
 
-
-// TODO: destructor
+template <class T>
+SkipList<T>::~SkipList()
+{
+	Node<T> *node = this->head;
+	while (node != NULL) {
+		Node<T> *last = node;
+		node = node->next[0];
+		delete last;
+	}
+}
 #endif
 
 #if FIND || ALL
