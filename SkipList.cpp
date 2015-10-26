@@ -12,6 +12,8 @@ SkipList<T>::SkipList()
 {
 	int height = SkipList<T>::maxHeight;
 	this->head = new Node<T>(height);
+	// FIXME the following line won't compile
+	// this->head = new Node<T>(SkipList<T>::maxHeight);
 	this->head->height = 1;
 }
 
