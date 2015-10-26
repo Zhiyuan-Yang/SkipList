@@ -7,7 +7,13 @@
 #include "Flags.h"
 
 #if CONSTRUCTOR || ALL
-// TODO: constructor
+template <class T>
+SkipList<T>::SkipList()
+{
+	int height = SkipList<T>::maxHeight;
+	this->head = new Node<T>(height);
+	this->head->height = 1;
+}
 
 
 // TODO: destructor
