@@ -67,7 +67,18 @@ bool SkipList<T>::find(const T & x) const
 #endif
 
 #if RANDOM || ALL
-// TODO: randomLevel() method
+template <class T>
+int SkipList<T>::randomLevel()
+{
+	int level = 0;
+	double pushup;
+	do {
+		level++;
+		pushup = getRandomNumber();
+	} while (level < SkipList<T>::maxHeight && pushup >= 0.5);
+	
+	return level;
+}
 #endif
 
 // random number generator
