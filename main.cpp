@@ -37,8 +37,6 @@ int main(int argc, const char * argv[])
 	myList.makeEmpty();
 	myList.printList();
 	
-	int key;
-	std::cout << "Enter a value to exit";
-	std::cin >> key; 
+	std::cout << "Test finished";
 	return 0;
 }
