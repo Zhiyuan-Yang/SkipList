@@ -30,7 +30,24 @@ SkipList<T>::~SkipList()
 #endif
 
 #if FIND || ALL
-// TODO: find() method
+template <class T>
+bool SkipList<T>::find(const T & x) const
+{
+	Node<T> *node = this->head;
+	int h = node->height-1;
+
+	while (node->next[h] != NULL && h > 0) {
+		if (node->next[h]->data == x) {
+			return true;
+		} else if (node->next[h]->data > x) {
+			h--;
+		} else if (node->next[h]->data < x) {
+			node = node->next[h];
+		}
+	}
+
+	return false;
+}
 #endif
 
 #if INSERT || ALL
