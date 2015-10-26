@@ -36,7 +36,7 @@ bool SkipList<T>::find(const T & x) const
 	Node<T> *node = this->head;
 	int h = node->height-1;
 
-	while (node->next[h] != NULL && h > 0) {
+	while (node->next[h] != NULL && h >= 0) {
 		if (node->next[h]->data == x) {
 			return true;
 		} else if (node->next[h]->data > x) {
