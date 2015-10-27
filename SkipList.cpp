@@ -25,9 +25,11 @@ SkipList<T>::~SkipList()
 	while (node != NULL) {
 		Node<T> *last = node;
 		node = node->next[0];
-		std::cout << "DEBUG: Deallocating node " << last->data << std::endl;
+		if (last != head)
+			std::cout << "DEBUG: Deallocating node " << last->data << std::endl;
 		delete last;
 	}
+	std::cout << "DEBUG: Destroy list\n";
 }
 #endif
 

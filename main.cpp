@@ -37,6 +37,5 @@ int main(int argc, const char * argv[])
 	myList.makeEmpty();
 	myList.printList();
 	
-	std::cout << "Test finished";
 	return 0;
 }
