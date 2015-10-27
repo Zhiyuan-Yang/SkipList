@@ -112,7 +112,20 @@ bool SkipList<T>::isEmpty() const
 #endif
 
 #if MAKEEMPTY || ALL
-// TODO: makeEmpty() method
+template <class T>
+void SkipList<T>::makeEmpty()
+{
+	Node<T> *node = this->head;
+	while (node != NULL) {
+		Node<T> *last = node;
+		node = node->next[0];
+		if (last != head)
+			std::cout << "DEBUG: Deallocating node " << last->data << std::endl;
+		delete last;
+	}
+	this->head = new Node<T>();
+	this->head->height = 1;
+}
 #endif
 
 #if RANDOM || ALL
