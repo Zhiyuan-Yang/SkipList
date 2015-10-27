@@ -80,6 +80,8 @@ template <class T>
 void SkipList<T>::remove(const T & x)
 {
 	Node<T> *delnode = NULL, *node = this->head;
+	// FIXME the following won't work, no idea why
+	// for (int level = SkipList<T>::maxHeight-1; level >= 0; level--) {
 	for (int level = this->head->height-1; level >= 0; level--) {
 		while (node->next[level] != NULL && node->next[level]->data < x)
 			node = node->next[level];
