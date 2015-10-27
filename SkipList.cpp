@@ -101,7 +101,14 @@ void SkipList<T>::remove(const T & x)
 #endif
 
 #if ISEMPTY || ALL
-// TODO: isEmpty() method
+template <class T>
+bool SkipList<T>::isEmpty() const
+{
+	for (int i = this->head->height-1; i >= 0; i--)
+		if (this->head->next[i] != NULL)
+			return false;
+	return true;
+}
 #endif
 
 #if MAKEEMPTY || ALL
