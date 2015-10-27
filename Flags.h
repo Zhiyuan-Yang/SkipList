@@ -5,7 +5,7 @@
 #define CONSTRUCTOR 1
 #define FIND 1
 #define INSERT 1
-//#define REMOVE 1
+#define REMOVE 1
 //#define ISEMPTY 1
 //#define MAKEEMPTY 1
 #define RANDOM 1

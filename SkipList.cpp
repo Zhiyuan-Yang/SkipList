@@ -76,7 +76,26 @@ void SkipList<T>::insert(const T & x)
 #endif
 
 #if REMOVE || ALL
-// TODO: remove() method
+template <class T>
+void SkipList<T>::remove(const T & x)
+{
+	Node<T> *delnode = NULL, *node = this->head;
+	for (int level = this->head->height-1; level >= 0; level--) {
+		while (node->next[level] != NULL && node->next[level]->data < x)
+			node = node->next[level];
+		if (node->next[level] != NULL && node->next[level]->data == x) {
+			delnode = node->next[level];
+			node->next[level] = delnode->next[level];
+		}
+	}
+
+	if (delnode == NULL) {
+		std::cout << "DEBUG: Delete failed - value " << x << " not found\n";
+	} else {
+		delete delnode;
+		std::cout << "DEBUG: Delete success - value " << x << " removed\n";
+	}
+}
 #endif
 
 #if ISEMPTY || ALL
